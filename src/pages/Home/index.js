@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
 // Componentes
@@ -12,23 +12,20 @@ import { Wrapper, InputNewTask, ButtonSend } from "./styles";
 // Redux
 import { store } from "../../store";
 import { salvarListaToDo } from "../../store/modulos/listaToDo/actions";
+import { useSelector } from "react-redux";
 
 const Home = () => {
-  const [listTasks, setListTasks] = useState([]);
   const [value, setValue] = useState("");
+  const lista = useSelector((state) => state.listaToDo);
 
   const { register, handleSubmit } = useForm();
 
   // Armazena novo registro
   const onSubmit = (data) => {
     let newRegister = { id: Math.random(), label: data?.newValue };
-    setListTasks(listTasks.concat(newRegister));
+    store.dispatch(salvarListaToDo(lista?.listToDo.concat(newRegister)));
     setValue("");
   };
-
-  useEffect(() => {
-    store.dispatch(salvarListaToDo(listTasks));
-  }, [listTasks]);
 
   return (
     <>
@@ -41,6 +38,7 @@ const Home = () => {
             value={value}
             ref={register}
             placeholder="Digite uma nova tarefa"
+            required
           />
           <ButtonSend type="submit" value="Adicionar" />
         </form>
