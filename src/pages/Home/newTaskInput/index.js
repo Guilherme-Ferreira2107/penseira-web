@@ -5,14 +5,14 @@ import { Wrapper, Form, Input, Button } from "./styles";
 const NewTaskInput = ({ onSubmit }) => {
   const [newItem, setNewItem] = useState("");
 
-  function setNewTask({ target }) {
-    setNewItem(target.value);
-  }
+  const setNewTask = (target) => {
+    console.log(target);
+  };
 
-  function submit(e) {
+  const submit = (e) => {
     e.preventDefault();
     onSubmit(newItem);
-  }
+  };
 
   return (
     <Wrapper>

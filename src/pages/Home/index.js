@@ -1,48 +1,50 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 
 // Componentes
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import NewTaskInput from "./newTaskInput";
-import ListItem from "./listItem";
+import ListItems from "./listItem";
 
 // Styles
-import { Wrapper } from "./styles";
+import { Wrapper, InputNewTask, ButtonSend } from "./styles";
+
+// Redux
+import { store } from "../../store";
+import { salvarListaToDo } from "../../store/modulos/listaToDo/actions";
 
 const Home = () => {
-  const [tasks, setTasks] = useState([]);
+  const [listTasks, setListTasks] = useState([]);
+  const [value, setValue] = useState("");
 
-  function addNewTask(task) {
-    const itensCopy = Array.from(tasks);
-    itensCopy.push({ id: tasks.length, value: task });
-    setTasks(itensCopy);
-  }
+  const { register, handleSubmit } = useForm();
 
-  function updateTask({ target }, index) {
-    const itensCopy = Array.from(tasks);
-    itensCopy.splice(index, 1, { id: index, value: target.value });
-    setTasks(itensCopy);
-  }
+  // Armazena novo registro
+  const onSubmit = (data) => {
+    let newRegister = { id: Math.random(), label: data?.newValue };
+    setListTasks(listTasks.concat(newRegister));
+    setValue("");
+  };
 
-  function deleteTask(index) {
-    const itensCopy = Array.from(tasks);
-    itensCopy.splice(index, 1);
-    setTasks(itensCopy);
-  }
+  useEffect(() => {
+    store.dispatch(salvarListaToDo(listTasks));
+  }, [listTasks]);
 
   return (
     <>
       <Header />
       <Wrapper>
-        <NewTaskInput onSubmit={addNewTask} />
-        {tasks.map(({ id, value }, index) => (
-          <ListItem
-            key={id}
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <InputNewTask
+            name="newValue"
+            onChange={(e) => setValue(e.target.value)}
             value={value}
-            onChange={(event) => updateTask(event, index)}
-            onDelete={() => deleteTask(index)}
+            ref={register}
+            placeholder="Digite uma nova tarefa"
           />
-        ))}
+          <ButtonSend type="submit" value="Adicionar" />
+        </form>
+        <ListItems />
       </Wrapper>
       <Footer />
     </>
