@@ -1,11 +1,12 @@
 import React from "react";
-
-import { Wrapper } from "./styles";
+import { useSelector } from "react-redux";
 
 // Redux
-import { store } from "../../../store";
-import { salvarListaToDo } from "../../../store/modulos/listaToDo/actions";
-import { useSelector } from "react-redux";
+import { store } from "../../store";
+import { salvarListaToDo } from "../../store/modulos/listaToDo/actions";
+
+// Styles
+import { Wrapper } from "./styles";
 
 const ListItems = () => {
   const lista = useSelector((state) => state.listaToDo);
@@ -22,7 +23,7 @@ const ListItems = () => {
           lista?.listToDo.map((item, idx) => (
             <div key={idx}>
               <li>{item.label}</li>
-              <button onClick={() => handleDelete(item.id)}>Delete</button>
+              <button onClick={() => handleDelete(item.id)}>Deletar</button>
             </div>
           ))}
       </ul>

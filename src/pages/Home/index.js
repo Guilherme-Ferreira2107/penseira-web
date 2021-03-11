@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 // Componentes
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import ListItems from "./listItem";
+import ListItems from "../../components/ListItem";
 
 // Styles
 import { Wrapper, InputNewTask, ButtonSend } from "./styles";
