@@ -6,7 +6,13 @@ import { store } from "../../store";
 import { salvarListaToDo } from "../../store/modulos/listaToDo/actions";
 
 // Styles
-import { Wrapper } from "./styles";
+import {
+  Wrapper,
+  ItemContainer,
+  Item,
+  ButtonEdit,
+  ButtonDelete,
+} from "./styles";
 
 const ListItems = () => {
   const lista = useSelector((state) => state.listaToDo);
@@ -17,16 +23,19 @@ const ListItems = () => {
   };
 
   return (
-    <Wrapper className="Item-container">
-      <ul>
-        {lista?.listToDo &&
-          lista?.listToDo.map((item, idx) => (
-            <div key={idx}>
-              <li>{item.label}</li>
-              <button onClick={() => handleDelete(item.id)}>Deletar</button>
-            </div>
-          ))}
-      </ul>
+    <Wrapper>
+      {lista?.listToDo &&
+        lista?.listToDo.map((item, idx) => (
+          <ItemContainer key={idx}>
+            <Item>{item.label}</Item>
+            <ButtonEdit onClick={() => console.info(item.id)}>
+              Editar
+            </ButtonEdit>
+            <ButtonDelete onClick={() => handleDelete(item.id)}>
+              Deletar
+            </ButtonDelete>
+          </ItemContainer>
+        ))}
     </Wrapper>
   );
 };

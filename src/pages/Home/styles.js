@@ -12,10 +12,17 @@ export const Wrapper = styled.div`
   }
 `;
 
+export const Form = styled.form``;
+
 export const ButtonSend = styled.input`
-  border: none;
+  background-image: linear-gradient(to left, #75736a 20%, #f7f2de);
+  border: 0px;
+  padding: 10px 35px;
 `;
 
 export const InputNewTask = styled.input`
-  border: none;
+  width: 250px;
+  padding: 10px;
+  border: 0px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 `;

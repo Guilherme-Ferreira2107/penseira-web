@@ -7,7 +7,7 @@ import Footer from "../../components/Footer";
 import ListItems from "../../components/ListItem";
 
 // Styles
-import { Wrapper, InputNewTask, ButtonSend } from "./styles";
+import { Wrapper, Form, InputNewTask, ButtonSend } from "./styles";
 
 // Redux
 import { store } from "../../store";
@@ -31,7 +31,7 @@ const Home = () => {
     <>
       <Header />
       <Wrapper>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <Form onSubmit={handleSubmit(onSubmit)}>
           <InputNewTask
             name="newValue"
             onChange={(e) => setValue(e.target.value)}
@@ -39,9 +39,10 @@ const Home = () => {
             ref={register}
             placeholder="Digite uma nova tarefa"
             required
+            maxLength="30"
           />
           <ButtonSend type="submit" value="Adicionar" />
-        </form>
+        </Form>
         <ListItems />
       </Wrapper>
       <Footer />
