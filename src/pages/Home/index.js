@@ -7,7 +7,7 @@ import Footer from "../../components/Footer";
 import ListItems from "../../components/ListItem";
 
 // Styles
-import { Wrapper, Form, InputNewTask, ButtonSend } from "./styles";
+import { Wrapper, Content, Form, InputNewTask, ButtonSend } from "./styles";
 
 // Redux
 import { store } from "../../store";
@@ -22,7 +22,11 @@ const Home = () => {
 
   // Armazena novo registro
   const onSubmit = (data) => {
-    let newRegister = { id: Math.random(), label: data?.newValue };
+    let newRegister = {
+      id: Math.random(),
+      label: data?.newValue,
+      habilitado: true,
+    };
     store.dispatch(salvarListaToDo(lista?.listToDo.concat(newRegister)));
     setValue("");
   };
@@ -31,19 +35,21 @@ const Home = () => {
     <>
       <Header />
       <Wrapper>
-        <Form onSubmit={handleSubmit(onSubmit)}>
-          <InputNewTask
-            name="newValue"
-            onChange={(e) => setValue(e.target.value)}
-            value={value}
-            ref={register}
-            placeholder="Digite uma nova tarefa"
-            required
-            maxLength="30"
-          />
-          <ButtonSend type="submit" value="Adicionar" />
-        </Form>
-        <ListItems />
+        <Content>
+          <Form onSubmit={handleSubmit(onSubmit)}>
+            <InputNewTask
+              name="newValue"
+              onChange={(e) => setValue(e.target.value)}
+              value={value}
+              ref={register}
+              placeholder="Digite uma nova tarefa"
+              required
+              maxLength="30"
+            />
+            <ButtonSend type="submit" value="Adicionar" />
+          </Form>
+          <ListItems />
+        </Content>
       </Wrapper>
       <Footer />
     </>

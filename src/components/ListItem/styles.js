@@ -2,8 +2,7 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
   border: none;
-  border-radius: 5px;
-  padding: 10px;
+  margin-top: 20px;
 `;
 
 export const ItemContainer = styled.div`
@@ -11,11 +10,20 @@ export const ItemContainer = styled.div`
   justify-content: center;
   width: 100%;
   margin-bottom: 10px;
+
+  & .MuiInputBase-root {
+    color: white;
+
+    &:hover {
+    }
+
+    &:after {
+      border: none;
+    }
+  }
 `;
 
-export const Lista = styled.ul``;
-
-export const Item = styled.li`
+export const Item = styled.input`
   list-style: none;
   background: #f7f2de;
   width: 100%;
@@ -24,15 +32,31 @@ export const Item = styled.li`
 `;
 
 export const ButtonEdit = styled.button`
+  width: 150px;
+  height: 35px;
+  border: 0;
   background: #75736a;
   color: white;
-  border: 0px;
-  padding: 5px 15px;
+  cursor: pointer;
+
+  &:hover {
+    border: 1px solid #75736a;
+    background: none;
+    color: #75736a;
+  }
 `;
 
 export const ButtonDelete = styled.button`
+  width: 150px;
+  height: 35px;
+  border: 0;
   background: red;
   color: white;
-  border: 0px;
-  padding: 5px 15px;
+  cursor: pointer;
+
+  &:hover {
+    border: 1px solid red;
+    background: none;
+    color: red;
+  }
 `;

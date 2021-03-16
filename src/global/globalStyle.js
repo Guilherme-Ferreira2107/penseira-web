@@ -2,11 +2,8 @@ import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
   body {
-    background-image: linear-gradient(
-    to right,
-    #F5E393,
-    #DEC17A
-  );
+    background: #212529;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif
   }
   * {
     box-sizing: border-box;

@@ -12,16 +12,30 @@ export const Wrapper = styled.div`
   }
 `;
 
-export const Form = styled.form``;
+export const Content = styled.div`
+  max-width: 600px;
+`;
+
+export const Form = styled.form`
+  display: flex;
+`;
 
 export const ButtonSend = styled.input`
-  background-image: linear-gradient(to left, #75736a 20%, #f7f2de);
-  border: 0px;
-  padding: 10px 35px;
+  width: 150px;
+  height: 35px;
+  border: 1px solid #50a14f;
+  background: #50a14f;
+  color: white;
+  cursor: pointer;
+
+  &:hover {
+    background: none;
+    color: #50a14f;
+  }
 `;
 
 export const InputNewTask = styled.input`
-  width: 250px;
+  width: 100%;
   padding: 10px;
   border: 0px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
