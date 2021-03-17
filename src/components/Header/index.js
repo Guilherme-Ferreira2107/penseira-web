@@ -1,13 +1,13 @@
 import React from "react";
-import { Wrapper } from "./styles";
+import { Wrapper, Titulo, SubTitulo } from "./styles";
 
 const Header = () => {
   return (
     <Wrapper>
-      <h1>Remind App</h1>
-      <h4>
+      <Titulo>Remind App</Titulo>
+      <SubTitulo>
         Armazene suas lembranças com um sistema de notificação inteligente
-      </h4>
+      </SubTitulo>
     </Wrapper>
   );
 };

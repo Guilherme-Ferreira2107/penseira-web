@@ -6,3 +6,11 @@ export const Wrapper = styled.div`
   padding: 50px auto;
   color: white;
 `;
+
+export const Titulo = styled.h1`
+  margin: 25px auto;
+`;
+
+export const SubTitulo = styled.h4`
+  margin: 5px auto;
+`;

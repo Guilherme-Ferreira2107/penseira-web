@@ -10,29 +10,17 @@ export const ItemContainer = styled.div`
   justify-content: center;
   width: 100%;
   margin-bottom: 10px;
-
-  & .MuiInputBase-root {
-    color: white;
-
-    &:hover {
-    }
-
-    &:after {
-      border: none;
-    }
-  }
 `;
 
-export const Item = styled.input`
-  list-style: none;
-  background: #f7f2de;
-  width: 100%;
-  min-width: 200px;
-  padding: 10px 20px;
+export const Item = styled.p`
+  color: #f7f2de;
+  width: 300px;
+  padding: 7.5px 20px;
+  border-bottom: 1px solid #75736a;
 `;
 
 export const ButtonEdit = styled.button`
-  width: 150px;
+  width: 100px;
   height: 35px;
   border: 0;
   background: #75736a;
@@ -47,7 +35,7 @@ export const ButtonEdit = styled.button`
 `;
 
 export const ButtonDelete = styled.button`
-  width: 150px;
+  width: 100px;
   height: 35px;
   border: 0;
   background: red;

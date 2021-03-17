@@ -1,33 +1,44 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
-import TextField from "@material-ui/core/TextField";
+
+// Components
+import Button from "../Button";
 
 // Redux
 import { store } from "../../store";
 import { salvarListaToDo } from "../../store/modulos/listaToDo/actions";
 
 // Styles
-import { Wrapper, ItemContainer, ButtonEdit, ButtonDelete } from "./styles";
+import { Wrapper, ItemContainer, Item } from "./styles";
 
-const ListItems = () => {
+const ListItems = ({ handleUpdate }) => {
   const lista = useSelector((state) => state.listaToDo);
-  const [handleList] = useState(lista);
 
   const handleDelete = (value) => {
-    const newList = handleList?.listToDo.filter((item) => item.id !== value);
+    const newList = lista?.listToDo.filter((item) => item.id !== value);
     store.dispatch(salvarListaToDo(newList));
   };
 
   return (
     <Wrapper>
-      {handleList?.listToDo &&
-        handleList?.listToDo.map((item, idx) => (
+      {lista?.listToDo &&
+        lista?.listToDo.map((item, idx) => (
           <ItemContainer key={idx}>
-            <TextField defaultValue={item.label} />
-            <ButtonEdit onClick={() => console.log(item.id)}>Editar</ButtonEdit>
-            <ButtonDelete onClick={() => handleDelete(item.id)}>
-              Deletar
-            </ButtonDelete>
+            <Item>{item.label}</Item>
+            <Button
+              value="Editar"
+              type="button"
+              color="#f7f2de"
+              border="#75736a"
+              onClick={() => handleUpdate(item.id)}
+            />
+            <Button
+              value="Deletar"
+              type="button"
+              color="#f7f2de"
+              border="#ff0000"
+              onClick={() => handleDelete(item.id)}
+            />
           </ItemContainer>
         ))}
     </Wrapper>
