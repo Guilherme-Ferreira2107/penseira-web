@@ -10,13 +10,22 @@ export const ItemContainer = styled.div`
   justify-content: center;
   width: 100%;
   margin-bottom: 10px;
+
+  & .labelTitle {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 `;
 
 export const Item = styled.p`
   color: #f7f2de;
-  width: 300px;
-  padding: 7.5px 20px;
+  padding: 7.8px 10px;
   border-bottom: 1px solid #75736a;
+
+  & :focus {
+    outline: none;
+  }
 `;
 
 export const ButtonEdit = styled.button`

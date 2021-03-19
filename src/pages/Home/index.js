@@ -1,27 +1,30 @@
 import React, { useState } from "react";
-import { useForm } from "react-hook-form";
+import moment from "moment";
 
 // Componentes
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import ListItems from "../../components/ListItem";
 import Button from "../../components/Button";
+import InputField from "../../components/Input";
 import Edit from "../Edit";
 import Grid from "@material-ui/core/Grid";
 
 // Styles
-import { Wrapper, Content, Form, InputNewTask } from "./styles";
+import { Wrapper, Content, Form } from "./styles";
 
 // Redux
 import { store } from "../../store";
 import { salvarListaToDo } from "../../store/modulos/listaToDo/actions";
 import { useSelector } from "react-redux";
-import moment from "moment";
+
+// Hooks
+import { useForm } from "react-hook-form";
 
 const Home = () => {
-  const [value, setValue] = useState("");
   const lista = useSelector((state) => state.listaToDo);
   const [loadingEdit, setLoadingEdit] = useState(false);
+  const [value, setValue] = useState("");
   const [itemId, setitemId] = useState();
 
   const { register, handleSubmit } = useForm();
@@ -43,6 +46,10 @@ const Home = () => {
     setLoadingEdit(true);
   };
 
+  const handleValue = (value) => {
+    setValue(value);
+  };
+
   return (
     <>
       <Header />
@@ -50,26 +57,28 @@ const Home = () => {
         {!loadingEdit ? (
           <Content>
             <Form onSubmit={handleSubmit(onSubmit)}>
-              <Grid item xs={8}>
-                <InputNewTask
-                  name="newValue"
-                  type="text"
-                  onChange={(e) => setValue(e.target.value)}
-                  value={value}
-                  ref={register}
-                  placeholder="Digite uma nova tarefa"
-                  required
-                  maxLength="30"
-                />
-              </Grid>
-              <Grid item xs={4}>
-                <Button
-                  value="Adicionar"
-                  type="submit"
-                  color="#f7f2de"
-                  border="#50a14f"
-                  background="#50a14f"
-                />
+              <Grid container>
+                <Grid item xs={8}>
+                  <InputField
+                    name="newValue"
+                    type="text"
+                    onChange={(e) => handleValue(e.target.value)}
+                    value={value}
+                    ref={register}
+                    placeholder="Digite uma nova tarefa"
+                    maxLength="40"
+                    required
+                  />
+                </Grid>
+                <Grid item xs={4}>
+                  <Button
+                    value="Adicionar"
+                    type="submit"
+                    color="#f7f2de"
+                    border="#50a14f"
+                    background="#50a14f"
+                  />
+                </Grid>
               </Grid>
             </Form>
             <ListItems handleUpdate={handleUpdate} />

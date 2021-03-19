@@ -1,15 +1,13 @@
 import styled from "styled-components";
 
-export const ButtonBasic = styled.input`
+export const InputBasic = styled.input`
   width: 100%;
   height: 35px;
-  border: 1px solid ${(props) => props.border};
-  background: ${(props) => props.background};
-  color: ${(props) => props.color};
-  cursor: pointer;
+  padding: 10px;
+  border: 0px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 
-  &:hover {
-    background: none;
-    color: ${(props) => props.border};
+  &:focus {
+    outline: none;
   }
 `;

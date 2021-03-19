@@ -7,6 +7,9 @@ export const ButtonBasic = styled.input`
   background: ${(props) => props.background};
   color: ${(props) => props.color};
   cursor: pointer;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 12px;
 
   &:hover {
     background: none;
