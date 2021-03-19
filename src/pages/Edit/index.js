@@ -67,7 +67,7 @@ const Edit = ({ itemId, setLoadingEdit }) => {
           cols="72"
         />
       </Grid>
-
+      <br />
       <Grid container>
         <Grid item xs={8}>
           <Button
