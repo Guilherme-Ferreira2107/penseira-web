@@ -1,5 +1,4 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
 
 // Components
 import Button from "../Button";
@@ -7,6 +6,7 @@ import Button from "../Button";
 // Redux
 import { store } from "../../store";
 import { salvarListaToDo } from "../../store/modulos/listaToDo/actions";
+import { useSelector } from "react-redux";
 
 // Styles
 import { Wrapper, ItemContainer, Item } from "./styles";
@@ -14,6 +14,11 @@ import { Grid } from "@material-ui/core";
 
 const ListItems = ({ handleUpdate }) => {
   const lista = useSelector((state) => state.listaToDo);
+  const [handlerList, setHandlerList] = useState();
+
+  useEffect(() => {
+    lista && setHandlerList(lista.listToDo);
+  }, [lista]);
 
   const handleDelete = (value) => {
     const newList = lista?.listToDo.filter((item) => item.id !== value);
@@ -22,12 +27,15 @@ const ListItems = ({ handleUpdate }) => {
 
   return (
     <Wrapper>
-      {lista?.listToDo &&
-        lista?.listToDo.map((item, idx) => (
+      {handlerList &&
+        handlerList.map((item, idx) => (
           <ItemContainer key={idx}>
             <Grid container direction="row">
               <Grid item xs={7} className="labelTitle">
-                <Item>{item.label}</Item>
+                <Item>
+                  {item.label}
+                  <p>{item.description}</p>
+                </Item>
               </Grid>
               <Grid container item xs={5}>
                 <Grid item xs={6}>

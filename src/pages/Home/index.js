@@ -38,12 +38,12 @@ const Home = () => {
       id: Math.random(),
       label: data?.title,
       description: data?.description,
-      date: moment().format("MMMM Do YYYY, h:mm:ss a"),
+      date: moment().format("YYYY/MM/DD, h:mm:ss"),
       habilitado: true,
     };
     store.dispatch(salvarListaToDo(lista?.listToDo.concat(newRegister)));
-    handleClearFields();
     setLoadingPopup(false);
+    handleClearFields();
   };
 
   const onSubmitModal = (data) => {

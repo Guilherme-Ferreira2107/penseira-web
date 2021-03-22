@@ -19,12 +19,18 @@ export const ItemContainer = styled.div`
 `;
 
 export const Item = styled.p`
+  font-size: 14px;
   color: #f7f2de;
-  padding: 7.8px 10px;
+  padding: 3.3px 10px;
   border-bottom: 1px solid #75736a;
 
   & :focus {
     outline: none;
+  }
+
+  & p {
+    font-size: 10px;
+    opacity: 0.3;
   }
 `;
 
