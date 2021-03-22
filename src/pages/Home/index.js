@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import moment from "moment";
 
 // Componentes
@@ -22,7 +22,6 @@ import { useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 
 const Home = () => {
-  const descriptionRef = useRef();
   const lista = useSelector((state) => state.listaToDo);
   const [loadingEdit, setLoadingEdit] = useState(false);
   const [loadingPopup, setLoadingPopup] = useState(false);
@@ -50,7 +49,6 @@ const Home = () => {
   const onSubmitModal = (data) => {
     setLoadingPopup(true);
     setTitle(data.newValue);
-    descriptionRef.current.focus();
   };
 
   const handleUpdate = (id) => {
@@ -78,7 +76,7 @@ const Home = () => {
 
   return (
     <>
-      <Header />
+      <Header className={loadingPopup && "blur"} />
       <Wrapper>
         {!loadingEdit ? (
           <>
@@ -131,7 +129,7 @@ const Home = () => {
                         type="text"
                         onChange={(e) => handleDescription(e.target.value)}
                         value={description}
-                        ref={(register, descriptionRef)}
+                        ref={register}
                         placeholder="Descrição"
                         required
                       />
@@ -169,7 +167,7 @@ const Home = () => {
           />
         )}
       </Wrapper>
-      <Footer />
+      <Footer className={loadingPopup && "blur"} />
     </>
   );
 };

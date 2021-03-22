@@ -1,9 +1,10 @@
 import React from "react";
 import { Wrapper, Titulo, SubTitulo } from "./styles";
 
-const Header = () => {
+const Header = (props) => {
+  const { className } = props;
   return (
-    <Wrapper>
+    <Wrapper className={className}>
       <Titulo>Remind App</Titulo>
       <SubTitulo>
         Armazene suas lembranças com um sistema de notificação inteligente

@@ -10,6 +10,8 @@ import { Form, InputText, TextArea } from "./styles";
 // Redux
 import { useSelector } from "react-redux";
 import { Grid } from "@material-ui/core";
+import { store } from "../../store";
+import { salvarListaToDo } from "../../store/modulos/listaToDo/actions";
 
 const Edit = ({ itemId, setLoadingEdit }) => {
   const [item, setItem] = useState("");
@@ -33,7 +35,23 @@ const Edit = ({ itemId, setLoadingEdit }) => {
 
   // Armazena novo update
   const onSubmit = (values) => {
-    console.log(values);
+    let newRegister = {
+      id: item[0].id,
+      label: values?.title,
+      description: values?.description,
+      date: item[0].date,
+      habilitado: true,
+    };
+    let updateList = lista?.listToDo.filter((it) => it.id !== item[0].id);
+    let concatList = updateList.concat(newRegister);
+    store.dispatch(salvarListaToDo(concatList));
+  };
+
+  // Delete
+  const deleteRegister = () => {
+    let updateList = lista?.listToDo.filter((it) => it.id !== item[0].id);
+    store.dispatch(salvarListaToDo(updateList));
+    setLoadingEdit(false);
   };
 
   const handleChange = (value) => {
@@ -58,7 +76,7 @@ const Edit = ({ itemId, setLoadingEdit }) => {
       <Grid item xs={12}>
         <TextArea
           type="text"
-          name="descricao"
+          name="description"
           value={description}
           onChange={(event) => handleChangeDescription(event.target.value)}
           placeholder="Descreva suas ideias"
@@ -83,7 +101,7 @@ const Edit = ({ itemId, setLoadingEdit }) => {
             type="button"
             color="#f7f2de"
             border="#ff0000"
-            onClick={() => console.log("deletar")}
+            onClick={deleteRegister}
           />
         </Grid>
       </Grid>

@@ -12,7 +12,6 @@ const InputField = forwardRef((props, ref) => {
     onChange,
     maxLength,
     required,
-    autofocus,
   } = props;
   return (
     <InputBasic
@@ -24,7 +23,6 @@ const InputField = forwardRef((props, ref) => {
       ref={ref}
       maxLength={maxLength}
       required={required}
-      autofocus={autofocus}
     />
   );
 });

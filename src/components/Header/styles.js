@@ -5,6 +5,11 @@ export const Wrapper = styled.div`
   text-align: center;
   padding: 50px auto;
   color: white;
+
+  &.blur {
+    filter: blur(5px);
+    pointer-events: none;
+  }
 `;
 
 export const Titulo = styled.h1`

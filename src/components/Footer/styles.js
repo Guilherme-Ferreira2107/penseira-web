@@ -6,6 +6,11 @@ export const Wrapper = styled.div`
   width: 100%;
   color: white;
 
+  &.blur {
+    filter: blur(5px);
+    pointer-events: none;
+  }
+
   a {
     color: white;
     text-decoration: none;
